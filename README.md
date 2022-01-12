@@ -106,9 +106,9 @@ __________
 
 ### Commands
 `npm i --save-dev eslint` install ESlint  
-`npm i --save-dev eslint-config-prettier` install ESLint Config Prettier
-`npm i --save-dev eslint-plugin-prettier` install ESLint Prettier Plugin
-`npm i --save-dev prettier` install prettier
+`npm i --save-dev eslint-config-prettier` install ESLint Config Prettier  
+`npm i --save-dev eslint-plugin-prettier` install ESLint Prettier Plugin  
+`npm i --save-dev prettier` install prettier  
 
 ### Configuration
 place this .prettierrc in root directory with the following JSON
