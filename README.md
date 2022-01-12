@@ -22,7 +22,7 @@ which is essential in creating a full stack JS application.
 `npm init -y`
 
 ### Configuration
-Once you have installed node you can use npm to define a node project's metadata
+Once you have installed node you can use npm to define a node project's metadata with the package.json file created by `npm init`
 
 ### Documentation
 package.json in root directory
