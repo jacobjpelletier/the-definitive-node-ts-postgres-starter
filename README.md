@@ -17,15 +17,17 @@ which is essential in creating a full stack JS application.
 [npm](https://docs.npmjs.com/about-npm) is the package manager we will be using to install components for this project  
 **package.json:**  
 [package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) configures general information about the project  
+**dotenv:**  
+[dotenv](https://www.npmjs.com/package/dotenv) can be used to manage environment variables seperate from the code itself  
+This is useful when: changing the port or IP, accessing static files, or access to the production vs development databases.
 
 ### Commands
-`npm init -y`
+`npm init -y`  
+`npm i dotenv`  
 
 ### Configuration
 Once you have installed node you can use npm to define a node project's metadata with the package.json file created by `npm init`
-
-### Documentation
-package.json in root directory
+"package.json" in root directory
 ``` 
 {
   "name": "node-ts-postgres",
@@ -58,7 +60,23 @@ package.json in root directory
     "jasmine": "^4.0.1",    
   }
 }
+```  
+".env" in root directory
+``` 
+NODE_ENV=development
+PORT=3001
+DB_HOST=db
+DB_USER=postgres
+DATABASE=postgres
+DB_PASSWORD=password
+DB_PORT=5432
+DB_POOL_SIZE=2
+DB_POOL_CLIENT_IDLE_TIMEOUT=10000
+DB_POOL_CLIENT_CONNECTION_TIMEOUT=2000
+WAIT_HOSTS=db:5432
 ```
+### Documentation
+
 __________
 ## Express
 ### What and Why
