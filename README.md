@@ -2,10 +2,15 @@
 by Jacob Pelletier
 
 # What this Repo Contains:
-## A basic template for a node-ts-postgres project with docker and an exhaustive README explanation for each decision made
-### Adapted from https://github.com/dmngu9/node-ts-postgres to serve as project starter for Udacity Full Stack JS project https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
+1. A **basic starter template** for a node-ts-postgres project with docker and an exhaustive README explanation for each decision made
+2. Adapted from https://github.com/dmngu9/node-ts-postgres to serve as project starter for Udacity Full Stack JS project https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
+3. Services:
+   1. node/express server in TS
+   2. dockerized app and postgres DB 
+   3. linting, formatting, and testing  
 
 # Setup
+Note that dependencies needed for development only will be saved to devDependencies woth `npm i --save-dev`
 ## Node
 ### What and Why
 Make sure you have node and npm installed for this project. Node is the necessary runtime to write JS for the back-end,
@@ -94,6 +99,51 @@ Express is used to:
 ### Configuration
 no special config file needed here : )
 __________
+## Linters
+### What and Why
+[ESLint](https://eslint.org/) serves as a linter for our code. Linters ensure that the code is in accordance to some style guideline, and can prevent issues in code (like calling functions before calling them).
+[Prettier](https://prettier.io/docs/en/) is an opinionated code formatter that enforces consistent parsing  
+
+### Commands
+`npm i --save-dev eslint` install ESlint  
+`npm i --save-dev eslint-config-prettier` install ESLint Config Prettier
+`npm i --save-dev eslint-plugin-prettier` install ESLint Prettier Plugin
+`npm i --save-dev prettier` install prettier
+
+### Configuration
+place this .prettierrc in root directory with the following JSON
+``` 
+{
+  "trailingComma": "es5",
+  "tabWidth": 4,
+  "semi": false,
+  "singleQuote": true
+}
+```
+place this .eslintrc.js in root directory
+``` 
+module.exports = {
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 13,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+    }
+};
+```
+__________
 ## Extras
 ### What and Why
 [nodemon](https://www.npmjs.com/package/nodemon) helps in development by automatically restarting the node server whenever changes are made
@@ -105,60 +155,21 @@ no special config file needed here : )
 __________
 ## TypeScript
 ### What and Why
+Typescript layers on top of Javascript to add typing.  
+Why do people use TS?
+1. TypeScript is a way to **reduce developer error** efficiently
+2. Typing is familiar to developers who have worked with strictly typed languages like Java, C#, and C++
+3. TypeScript is easy to learn
+4. Used in popular front-end frameworks including Angular, React and Vue
+5. Supported by all major IDEs and code editors including Visual Studio Code, Sublime and Atom
+
+[TS documentation](https://www.typescriptlang.org/docs/handbook/typescript-from-scratch.html)  
 
 ### Commands
 `npm i --save-dev typescript`  
 `npm i --save-dev ts-node`  
 `npm i --save-dev @types/node`  
-`npx tsc --init` adds the default TS config file
-### Configuration
-
-### Documentation
-
-__________
-## Postgres
-### What and Why
-
-### Commands
-`npm install -g db-migrate`
-`npm install -g db-migrate-pg`
-
-### Configuration
-
-### Documentation
-
-__________
-## Docker
-### What and Why
-
-### Commands
-`docker exec -it f82dbdb3637c psql -U postgres postgres`
-
-### Configuration
-
-### Documentation
-
-__________
-## Linters
-### What and Why
-
-### Commands
-`npm i --save-dev eslint` install ESlint  
-`npm i --save-dev eslint-config-prettier` install ESLint Config Prettier
-`npm i --save-dev eslint-plugin-prettier` install ESLint Prettier Plugin
-`npm i --save-dev prettier` install prettier
-
-### Configuration
-place this .prettierrc in root directory
-
-### Documentation
-
-
-__________
-## Testing
-### What and Why
-
-### Commands
+`npx tsc --init` adds the default TS config file  
 
 ### Configuration
 Configure tsconfig.json like this:
@@ -209,6 +220,40 @@ Configure tsconfig.json like this:
   "include": ["./src/**/*"]
 }
 ```
+
+__________
+## Postgres
+### What and Why
+
+### Commands
+`npm install -g db-migrate`
+`npm install -g db-migrate-pg`
+
+### Configuration
+
+### Documentation
+
+__________
+## Docker
+### What and Why
+
+### Commands
+`docker exec -it <id> psql -U postgres postgres` where container id can be found by running `docker ps`
+
+### Configuration
+
+### Documentation
+
+__________
+## Testing
+### What and Why
+
+### Commands
+`npm i --save-dev @types/supertest`  
+`npm i --save-dev supertest` 
+
+### Configuration
+
 ### Documentation
 
 
