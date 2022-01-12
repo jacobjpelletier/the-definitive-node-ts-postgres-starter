@@ -11,12 +11,11 @@
 Make sure you have node and npm installed for this project. Node is the necessary runtime to write JS for the back-end,
 which is essential in creating a full stack JS application.
 
-**Node**    
-
+**Node**
 [Node](https://nodejs.org/en/about/) is an asynchronous event-driven JavaScript runtime which we can use to build a network application.  
-**npm**
+**npm**  
 [npm](https://docs.npmjs.com/about-npm) is the package manager we will be using to install components for this project  
-**package.json**
+**package.json**  
 [package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) configures general information about the project  
 
 ### Commands
