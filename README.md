@@ -1,8 +1,8 @@
-# NODE-TS-POSTGRES DOCKER PROJECT
-## by Jacob Pelletier
+# NODE-TS-POSTGRES DOCKER STARTER
+by Jacob Pelletier
 
-# What this Repo Contains
-## A basic template for a node-ts-postgres project with docker and an exhaustive README explanation for each decision
+# What this Repo Contains:
+## A basic template for a node-ts-postgres project with docker and an exhaustive README explanation for each decision made
 ### Adapted from https://github.com/dmngu9/node-ts-postgres to serve as project starter for Udacity Full Stack JS project https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
 
 # Setup
@@ -75,31 +75,33 @@ DB_POOL_CLIENT_IDLE_TIMEOUT=10000
 DB_POOL_CLIENT_CONNECTION_TIMEOUT=2000
 WAIT_HOSTS=db:5432
 ```
-### Documentation
-
 __________
 ## Express
 ### What and Why
+Where Node provides a runtime to execute javascript on the backend, [Express](https://expressjs.com/) is a framework that acts as a server framework that allows us to build web apps and APIs easily.
+Express builds on the Node HTML module and allows us to handle requests and parses data with minimal configuration.  
 
+Express is used to:  
+1. set up a web server  
+2. work with routes  
+3. apply middleware
+
+[more node/express documentation here](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction#introducing_express)
 ### Commands
-`npm install express`
-`npm i --save-dev @types/express`
+`npm install express`  
+`npm i --save-dev @types/express`  
 
 ### Configuration
-
-### Documentation
-
+no special config file needed here : )
 __________
-## Loggers
+## Extras
 ### What and Why
-
+[nodemon](https://www.npmjs.com/package/nodemon) helps in development by automatically restarting the node server whenever changes are made
 ### Commands
+`npm i nodemon`
 
 ### Configuration
-
-### Documentation
-
-
+no special config file needed here : )
 __________
 ## TypeScript
 ### What and Why
