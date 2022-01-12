@@ -8,18 +8,57 @@
 # Setup
 ## Node
 ### What and Why
-Make sure you have node and npm installed for this project.
+Make sure you have node and npm installed for this project. Node is the necessary runtime to write JS for the back-end,
+which is essential in creating a full stack JS application.
+
 **Node**   
 [Node](https://nodejs.org/en/about/) is an asynchronous event-driven JavaScript runtime which we can use to build a network application.
+**npm**  
+[npm](https://docs.npmjs.com/about-npm) is the package manager we will be using to install components for this project
+**package.json**  
+[package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) configures general information about the project  
 
 ### Commands
 `npm init -y`
 
 ### Configuration
+Once you have installed node you can use npm to define a node project's metadata
 
 ### Documentation
-
-
+package.json in root directory
+``` 
+{
+  "name": "node-ts-postgres",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf dist && ttsc && cp -R ./src/db/migrations ./dist/db",
+    "dev": "NODE_PATH=src nodemon --watch src -e ts --exec ts-node -r dotenv/config src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.2",
+    "@types/pg": "^7.14.11",
+    "dotenv": "^9.0.1",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "ttypescript": "^1.5.12",
+    "typescript": "^4.2.4",
+    "typescript-transform-paths": "^2.2.3",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.4.0",
+    "jasmine": "^4.0.1",    
+  }
+}
+```
 __________
 ## Express
 ### What and Why
