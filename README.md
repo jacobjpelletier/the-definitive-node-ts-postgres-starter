@@ -1,17 +1,16 @@
 # NODE-TS-POSTGRES DOCKER PROJECT
 ## by Jacob Pelletier
-__________
+
 # What this Repo Contains
 ## A basic template for a node-ts-postgres project with docker and an exhaustive README explanation for each decision
 ### Adapted from https://github.com/dmngu9/node-ts-postgres to serve as project starter for Udacity Full Stack JS project https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
 
 # Setup
-__________
 ## Node
 ### What and Why
 Make sure you have node and npm installed for this project.
 **Node**   
-![Node](https://nodejs.org/en/about/) is an asynchronous event-driven JavaScript runtime which we can use to build a network application.
+[Node](https://nodejs.org/en/about/) is an asynchronous event-driven JavaScript runtime which we can use to build a network application.
 
 ### Commands
 `npm init -y`
