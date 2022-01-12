@@ -4,13 +4,13 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install
+RUN npm install
 
-RUN yarn build
+RUN npm run build
 
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.8.0/wait /wait
 RUN chmod +x /wait
 
 EXPOSE 3000
 
-CMD /wait && yarn start
+CMD /wait && npm run start
