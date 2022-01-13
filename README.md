@@ -3,21 +3,24 @@ by Jacob Pelletier
 >GOAL: Get started with node-ts-postgres quickly with docker
 
 # Why I Decided To Make This Repo:
-1. Provide a **basic starter template** for a node-postgres starter in TypeScript with docker and an (attempted) exhaustive README explanation for each decision made for quick development
-2. There are many resources out there but none had *exactly* what I was looking for. So I took what I liked from the following sources:
+1. I was trying to complete [Udacity's Full Stack JS NanoDegree](https://www.udacity.com/course/full-stack-javascript-developer-nanodegree--nd0067) was struggling to understand and follow their material - especially set-up for the project.
+   1. not a diss, might be my bad, im usually a big fan.
+2. So I wanted to provide an easy to get along with **basic starter template** for node-postgres in TypeScript with docker 
+   1. along with an (attempted) exhaustive README explanation for each decision made
+3. There are many resources out there but none had *exactly* what I was looking for. So I took what I liked from the following sources:
    1. https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
       1. I didn't use this completely because it was difficult to get started with and some choices were poorly explained
    2. https://github.com/dmngu9/node-ts-postgres/blob/master/package.json
       1. This was a great foundation but missing key features found in the Udacity starter
       2. video walk through here: https://www.youtube.com/watch?v=URzZhiZTvgA&t=1685s
-3. Features:
+4. Features:
    1. node/express server in TS
    2. dockerized app and postgres DB 
    3. linting, formatting, and testing  
-4. This is for educational and starter template purposes, so **remember to gitignore your own .env file!**
+5. This is for educational and starter template purposes, so **remember to gitignore your own .env file!**
 
 # Setup
-1. Note that dependencies needed for development only will be saved to devDependencies woth `npm i --save-dev`
+1. Note that dependencies needed for development only will be saved to devDependencies with `npm i --save-dev`
 2. Want to skip all this background knowledge and get up and running? Skip to "Commands" section at the bottom
 ## Node
 ### What and Why
