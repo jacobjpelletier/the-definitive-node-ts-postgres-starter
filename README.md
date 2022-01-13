@@ -3,7 +3,7 @@ by Jacob Pelletier
 >GOAL: Get started with node-ts-postgres quickly with docker
 
 # Why I Decided To Make This Repo:
-1. I was trying to complete [Udacity's Full Stack JS NanoDegree](https://www.udacity.com/course/full-stack-javascript-developer-nanodegree--nd0067) was struggling to understand and follow their material - especially set-up for the project.
+1. I was trying to complete [Udacity's Full Stack JS NanoDegree](https://www.udacity.com/course/full-stack-javascript-developer-nanodegree--nd0067) but was struggling to understand and follow their material - especially for project-setup.
    1. not a diss, might be my bad, im usually a big fan.
 2. So I wanted to provide an easy to get along with **basic starter template** for node-postgres in TypeScript with docker 
    1. along with an (attempted) exhaustive README explanation for each decision made
