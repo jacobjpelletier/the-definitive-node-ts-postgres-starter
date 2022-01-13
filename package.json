@@ -13,9 +13,9 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "node-postgres": "^0.6.2",
-    "postgres-migrations": "^5.1.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "postgres-migrations": "^5.1.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",

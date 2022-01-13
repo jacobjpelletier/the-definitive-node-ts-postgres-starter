@@ -1,7 +1,8 @@
 import path from 'path'
-import { Pool, PoolClient, QueryConfig, QueryResult, QueryResultRow } from 'pg'
+import { Pool } from 'pg'
 import { migrate } from 'postgres-migrations'
 
+// pull environment variables
 const poolConfig = {
 	database: process.env.DATABASE,
 	user: process.env.DB_USER,
@@ -25,6 +26,7 @@ class Database {
 	runMigrations = async (): Promise<void> => {
 		const client = await this.pool.connect()
 		try {
+			// tell client to try to run migration script
 			await migrate({ client }, path.resolve(__dirname, 'migrations/sql'))
     } catch (err) {
       console.error('migation failes', err)

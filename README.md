@@ -1,16 +1,24 @@
 # NODE-TS-POSTGRES DOCKER STARTER
 by Jacob Pelletier
+>GOAL: Get started with node-ts-postgres quickly with docker
 
-# What this Repo Contains:
-1. A **basic starter template** for a node-ts-postgres project with docker and an exhaustive README explanation for each decision made
-2. Adapted from https://github.com/dmngu9/node-ts-postgres to serve as project starter for Udacity Full Stack JS project https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
-3. Services:
+# Why I Decided To Make This Repo:
+1. Provide a **basic starter template** for a node-postgres starter in TypeScript with docker and an (attempted) exhaustive README explanation for each decision made for quick development
+2. There are many resources out there but none had *exactly* what I was looking for. So I took what I liked from the following sources:
+   1. https://github.com/udacity/nd0067-c2-creating-an-api-with-postgresql-and-express-project-starter
+      1. I didn't use this completely because it was difficult to get started with and some choices were poorly explained
+   2. https://github.com/dmngu9/node-ts-postgres/blob/master/package.json
+      1. This was a great foundation but missing key features found in the Udacity starter
+      2. video walk through here: https://www.youtube.com/watch?v=URzZhiZTvgA&t=1685s
+3. Features:
    1. node/express server in TS
    2. dockerized app and postgres DB 
    3. linting, formatting, and testing  
+4. This is for educational and starter template purposes, so **remember to gitignore your own .env file!**
 
 # Setup
-Note that dependencies needed for development only will be saved to devDependencies woth `npm i --save-dev`
+1. Note that dependencies needed for development only will be saved to devDependencies woth `npm i --save-dev`
+2. Want to skip all this background knowledge and get up and running? Skip to "Commands" section at the bottom
 ## Node
 ### What and Why
 Make sure you have node and npm installed for this project. Node is the necessary runtime to write JS for the back-end,
@@ -87,6 +95,8 @@ DB_POOL_CLIENT_IDLE_TIMEOUT=10000
 DB_POOL_CLIENT_CONNECTION_TIMEOUT=2000
 WAIT_HOSTS=db:5432
 ```
+1. DB_HOST: the db defined in docker-compose
+2. Define DB variables 
 __________
 ## Express
 ### What and Why
@@ -234,6 +244,8 @@ Configure tsconfig.json like this:
   "include": ["./src/**/*"]
 }
 ```
+1. "paths" config will allow us to use abs path such as "import db from 'db'" in index.ts instead of something like "import db from './../../db'"
+2. "plugins" is where we can add typescript-transform-paths to help ts handle absolute path 
 __________
 ## Docker
 ### What and Why
@@ -325,21 +337,33 @@ volumes:
       4. volumes: what directory will be store data in postgres - persists data in this container
    3. volume
       1. db-data: map to container, this value must be the same as db: volumes
-### Documentation
-
+   3 NOTE: while depends_on specifies that the db container will be started first, it does not guarantee that the container will be ready for app
+      2. solutions can be found on docker-compose docs [here](https://docs.docker.com/compose/startup-order/).
+      3. solution chosen here is [docker-compose-wait](https://github.com/ufoscout/docker-compose-wait) 
+      
 __________
 
 ## Postgres
 ### What and Why
+**Postgres**  
+Obviously, postgres is the (SQL) database we are using for this project. The question is, after all that docker talk, how.  
+We start with the [well documented package](https://node-postgres.com/) node-postgress or "pg" which contains a collection of node modules we can use to interact with PSQL.  
+
+**Migrations** 
+When you want to write a DB script, write the script in migrations to increase visibility.  
+Note the file "1_create-table.sql" file in src/db/migrations/sql as an example of a migrations script.
+Some benefits of using migrations scripts include:
+1. 
+
+We use the npm package [postgres-migrations](https://www.npmjs.com/package/postgres-migrations) to handle migrations.  
 
 ### Commands
-`npm install -g db-migrate`
+`npm install pg`
 
-`npm install -g db-migrate-pg`
+`npm install db-migrate`
 
 ### Configuration
-
-### Documentation
+see index.ts for how basic db was setup
 
 __________
 
@@ -352,9 +376,6 @@ __________
 `npm i --save-dev supertest` 
 
 ### Configuration
-
-### Documentation
-
 
 __________
 # Scripts and Commands
@@ -376,11 +397,51 @@ __________
 The "build" script compiles TS to commonJS.  
 1. `"build": "rm -rf dist && ttsc && cp -R ./src/db/migrations ./dist/db"`   
    - `rm -rf dist &&` remove old code found in dist folder and build from scratch
-   - `tsc` to compile TS code  
+   - `ttsc` to compile TS code
+   - `ttsc` is used rather than `tsc` because `tsc` cannot resolve relative path
+     - where ttsc stands for transform typescript
+     - when you run npm run build, you will see correct relative path in /dist
+   - because ts compilations only handle .ts files, we need to manually move migrations into the dist folder with `cp -R ./src/db/migrations ./dist/db`
 The "dev" script we run during development
-2. `"dev": "nodemon --watch src -e ts --exec -ts-node -r dotenv/config src/index"`
+2. `"dev": "NODE_PATH=src nodemon --watch src -e ts --exec ts-node -r dotenv/config src/index.ts"`
    - tells nodemon to watch for any changes in the source folder 
    - executes ts-node to read .env file apply this to run src/index.ts
+   - NODE_PATH is to help with absolute path issues when running dev script
 The "start" script is used for production 
 3. `"start": "node dist/index.js"`
 
+## Commands
+### To Get Up and Running Quickly:
+1. clone or download repo
+2. run `docker-compose up -d --build && docker-compose logs -f`
+
+### To Verify DB migrations are working
+1. Once running, open another terminal and run docker ps to get `id`
+2. `docker exec -it <id> psql -U postgres postgres` to login to psql DB
+3. `\c postgres` to see postgres DB (name defined in docker-compose)
+4. `dt` to see tables
+   1. should see migrations and user_profile
+5. `SELECT * FROM user_profile;`
+   1. see no user
+6. `SELECT * FROM migrations;`
+   1. see two items:
+      1. create-migrations-table
+      2. create-table
+7. back in project directory, create a new migration
+   1. called `2_create-table.sql`. note that numbers prefixing names should be unique
+   2. fill with: 
+   ``` 
+   INSERT INTO user_profile(user_id, name) VALUES ('5432', "jennifer");
+   ```
+   3. quit with `\q`
+   4. stop container, re-run exec command (step 2), see changes.  
+
+Commands To Perform Once Connected To DB To Verify:  
+•	\l List databases
+•	\c Connect to a database
+         \c <db_name>
+•	\dt Display Tables in a database
+•	\q Quit out of psql to normal terminal
+
+
+helpful tip: `docker exec -it <id> /bash` to login to container as root.
